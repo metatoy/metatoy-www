@@ -1,0 +1,18 @@
+# dependencies / build
+node_modules/
+.next/
+/build
+/out
+
+# next standalone / vercel
+.vercel
+
+# local design source (kept out of the deploy repo)
+animation-clips/
+assets-design-reference/
+
+# misc
+.DS_Store
+*.pem
+tmp/
+npm-debug.log*

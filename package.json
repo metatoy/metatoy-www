@@ -1,0 +1,25 @@
+{
+  "name": "metatoy-www",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "check:no-ts": "node scripts/check-no-ts.mjs",
+    "prebuild": "node scripts/check-no-ts.mjs",
+    "build": "next build",
+    "start": "next start",
+    "prelint": "node scripts/check-no-ts.mjs",
+    "lint": "eslint",
+    "pretest": "node scripts/check-no-ts.mjs",
+    "test": "node scripts/check-no-ts.mjs && echo \"metatoy-www: no runtime test suite (studio landing)\""
+  },
+  "dependencies": {
+    "next": "16.2.7",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "16.2.7"
+  }
+}
