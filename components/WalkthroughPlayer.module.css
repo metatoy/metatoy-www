@@ -1,0 +1,109 @@
+/* WalkthroughPlayer — reusable animated + narrated walkthrough island.
+   Brand tokens from app/globals.css (--color-accent Blaze Orange / neutrals). Restraint over flourish.
+   Ported + generalized from sorb-www LifecycleDemo.module.css. */
+
+.player {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  outline: none;
+  max-width: var(--maxw, 1080px);
+  margin: 0 auto;
+}
+.player:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+
+/* top bar */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--color-border);
+}
+.topLabel {
+  text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem;
+  font-weight: 700; color: var(--color-muted); margin: 0;
+}
+.muteBtn {
+  border: 1px solid var(--color-border); background: transparent; color: var(--color-muted);
+  width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center;
+  cursor: pointer; transition: color .15s ease, border-color .15s ease;
+}
+.muteBtn:hover:not(:disabled) { color: var(--color-accent); border-color: var(--color-accent); }
+.muteBtn:disabled { opacity: .4; cursor: default; }
+.muteBtn svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* stage */
+.stage {
+  position: relative; width: 100%; aspect-ratio: 16 / 10; max-height: 62vh;
+  background: linear-gradient(160deg, #14110d 0%, #1c1712 100%);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+/* keyed visual wrapper — fades/rises in on each step change (entrance transition) */
+.stageVisual { position: absolute; inset: 0; display: grid; place-items: center; animation: sceneEnter 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.stageVisual svg { width: 100%; height: 100%; display: block; }
+.poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+@keyframes sceneEnter { from { opacity: 0; transform: translateY(10px) scale(0.99); } to { opacity: 1; transform: none; } }
+
+/* auto-advance progress bar (under the stage) */
+.progress { height: 3px; background: rgba(255, 255, 255, 0.06); position: relative; overflow: hidden; }
+.progressFill {
+  position: absolute; inset: 0; transform-origin: left center; transform: scaleX(0);
+  background: var(--color-accent);
+  animation-name: progressFill; animation-timing-function: linear; animation-fill-mode: forwards;
+}
+@keyframes progressFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.badge, .moneyTag {
+  position: absolute; top: 12px; z-index: 3; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: .04em; padding: 0.28rem 0.6rem; border-radius: 999px;
+}
+.badge { right: 12px; background: var(--color-accent); color: var(--color-accent-ink); }
+.moneyTag { left: 12px; background: rgba(255,255,255,.9); color: var(--color-ink); }
+
+/* caption */
+.caption { padding: 1.15rem 1.35rem 0.4rem; animation: captionEnter 0.45s ease both; }
+@keyframes captionEnter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.captionTitle { margin: 0 0 0.35rem; font-size: 1.22rem; font-weight: 750; color: var(--color-fg); }
+.captionBody { margin: 0; color: var(--color-fg); opacity: .82; line-height: 1.5; max-width: 62ch; }
+
+/* controls */
+.controls {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  padding: 0.9rem 1.35rem 1.15rem;
+}
+.buttons { display: inline-flex; gap: 0.5rem; }
+.ctrlBtn {
+  border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-fg);
+  width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.ctrlBtn:hover:not(:disabled) { border-color: var(--color-accent); color: var(--color-accent); }
+.ctrlBtn:disabled { opacity: .35; cursor: default; }
+.ctrlBtn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.ctrlBtn svg { width: 20px; height: 20px; fill: currentColor; }
+.playBtn { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-accent-ink); }
+.playBtn:hover:not(:disabled) { color: var(--color-accent-ink); filter: brightness(1.05); }
+
+.scrubber { display: inline-flex; align-items: center; gap: 0.85rem; }
+.dots { display: inline-flex; gap: 7px; }
+.dot {
+  width: 9px; height: 9px; padding: 0; border: none; border-radius: 999px; cursor: pointer;
+  background: var(--color-border); transition: background .15s ease, transform .15s ease;
+}
+.dot:hover { transform: scale(1.25); }
+.dotDone { background: var(--color-muted); }
+.dotActive { background: var(--color-accent); transform: scale(1.35); }
+.dot:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.counter { font-size: 0.8rem; color: var(--color-muted); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 640px) {
+  .captionTitle { font-size: 1.08rem; }
+  .controls { justify-content: center; }
+}
+
+/* Respect reduced motion: the scene components read a `reduced` prop and hold a static poster
+   frame; here we also neutralize any CSS transitions the scenes rely on. */
+@media (prefers-reduced-motion: reduce) {
+  .stageVisual, .stageVisual *, .caption { animation: none !important; transition: none !important; }
+  .progress { display: none; }
+}
