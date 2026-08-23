@@ -16,3 +16,6 @@ assets-design-reference/
 *.pem
 tmp/
 npm-debug.log*
+
+# local dev server log
+dev.log

@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./tokens.css";
 import Script from "next/script";
 import { SITE } from "../lib/site.js";
 

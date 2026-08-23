@@ -1,30 +1,18 @@
-import Link from "next/link";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
-import JsonLd from "@/components/JsonLd";
-import { SITE, pageMetadata } from "@/lib/site";
+import "./home.css";
+import { Archivo, Newsreader, IBM_Plex_Mono } from "next/font/google";
+import { pageMetadata } from "@/lib/site";
+import ContactForm from "@/components/ContactForm";
+import HeroFX from "@/components/HeroFX";
 
-// Studio contact mailbox (distinct from SITE.contactEmail, which Sorb's legal
-// pages use). Studio landing routes "contact" + "subscribe" here.
-const STUDIO_EMAIL = "hello@metatoy.com";
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-studio-mono",
-  display: "swap",
-});
-const display = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "700"],
-  variable: "--font-studio-display",
-  display: "swap",
-});
+const archivo = Archivo({ subsets: ["latin"], weight: ["600", "800", "900"], variable: "--font-archivo", display: "swap" });
+const newsreader = Newsreader({ subsets: ["latin"], weight: ["400", "500"], style: ["normal", "italic"], variable: "--font-newsreader", display: "swap" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono-studio", display: "swap" });
 
 const STUDIO_TITLE = "Metatoy: Build the tool, Ship the toy";
 const base = pageMetadata({
   title: null,
   description:
-    "Metatoy is a workshop of one — a developer tool (Sorb) and a consumer game (woords) built side by side. One founder, two products.",
+    "Metatoy is a studio of one working the seam between design and engineering — production tools (Sorb), playful apps (woords, TattleTown), and open source other builders use.",
   path: "/",
 });
 export const metadata = {
@@ -34,226 +22,177 @@ export const metadata = {
   twitter: { ...base.twitter, title: STUDIO_TITLE },
 };
 
-// ---- decorative top strip: 16-cell grid of geometric glyph tiles ----
-const C = {
-  bg: "#04110a",
-  bg2: "#04130a",
-  green: "#35ff6a",
-  greenDark: "#0a3a1d",
-};
-const STRIPE_D = `repeating-linear-gradient(-45deg, ${C.bg2} 0 6px, ${C.green} 6px 12px)`;
-const STRIPE_H = `repeating-linear-gradient(0deg, ${C.bg2} 0 6px, ${C.green} 6px 12px)`;
-const CHECKER = `conic-gradient(${C.green} 90deg, ${C.greenDark} 0 180deg, ${C.green} 0 270deg, ${C.greenDark} 0) 0 0 / 50% 50%`;
-const CONC_BL = `repeating-radial-gradient(circle at 0% 100%, ${C.greenDark} 0 18%, ${C.green} 18% 34%, ${C.greenDark} 34% 50%) ${C.greenDark}`;
-const CONC_BR = `repeating-radial-gradient(circle at 100% 100%, ${C.greenDark} 0 18%, ${C.green} 18% 34%, ${C.greenDark} 34% 50%) ${C.greenDark}`;
-const PIE = `conic-gradient(${C.green} 0 90deg, ${C.greenDark} 0 180deg, ${C.green} 0 270deg, ${C.greenDark} 0)`;
-const STAR = "polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%)";
-const ARROW = "polygon(50% 100%, 0 42%, 28% 42%, 28% 0, 72% 0, 72% 42%, 100% 42%)";
-
-const center = { display: "flex", alignItems: "center", justifyContent: "center" };
-
-function tile(key, i) {
-  switch (key) {
-    case "stripeD":
-      return <div key={i} style={{ background: STRIPE_D }} />;
-    case "stripeH":
-      return <div key={i} style={{ background: STRIPE_H }} />;
-    case "checker":
-      return <div key={i} style={{ background: CHECKER }} />;
-    case "concBL":
-      return <div key={i} style={{ background: CONC_BL }} />;
-    case "concBR":
-      return <div key={i} style={{ background: CONC_BR }} />;
-    case "circle":
-      return (
-        <div key={i} style={{ background: C.greenDark, ...center }}>
-          <div style={{ width: "54%", height: "54%", background: C.green, borderRadius: "50%" }} />
-        </div>
-      );
-    case "diamond":
-      return (
-        <div key={i} style={{ background: C.green, ...center }}>
-          <div style={{ width: "54%", height: "54%", background: C.bg2, transform: "rotate(45deg)" }} />
-        </div>
-      );
-    case "pie":
-      return (
-        <div key={i} style={{ background: C.bg2, ...center }}>
-          <div style={{ width: "60%", height: "60%", borderRadius: "50%", background: PIE }} />
-        </div>
-      );
-    case "star":
-      return (
-        <div key={i} style={{ background: C.green, ...center }}>
-          <div style={{ width: "64%", height: "64%", background: C.bg2, clipPath: STAR }} />
-        </div>
-      );
-    case "arrow":
-      return (
-        <div key={i} style={{ background: C.bg2, ...center }}>
-          <div style={{ width: "60%", height: "60%", background: C.green, clipPath: ARROW }} />
-        </div>
-      );
-    default:
-      return <div key={i} />;
-  }
-}
-
-const STRIP = [
-  "stripeD", "circle", "diamond", "checker", "concBL", "stripeH", "pie", "star",
-  "stripeD", "circle", "diamond", "checker", "concBR", "stripeH", "arrow", "star",
-];
-
-// ---- product roster ----
-const PRODUCTS = [
+const PROJECTS = [
   {
-    n: "01",
-    id: "woords",
-    name: "w∞rds™",
-    glyph: "stripeD",
-    chips: ["iPhone", "iPad"],
-    blurb:
-      "A spatial crossword. Slide, stack and cross words across a living grid where every move shifts the board. Quick to learn, hard to put down.",
-    status: "beta",
-    cta: { label: "waitlist →", href: "https://woords.io/", external: true },
+    name: "Sorb", kind: "Tool", tag: "beta", tagText: "Beta · invite", img: "/projects/sorb.png",
+    body: "A design-token bridge carrying a live design system from Figma into a running React app, with a read layer AI agents can query.",
+    why: "tokens change once, everywhere updates.",
+    links: [{ t: "Site", u: "https://www.sorbcloud.com" }],
   },
   {
-    n: "02",
-    id: "sorb",
+    name: "woords", kind: "Toy", tag: "live", tagText: "Live", img: "/projects/woords.png",
+    body: "An infinite daily crossword whose board scales from a neighborhood to an alternate reality across five seasons. On the App Store.",
+    why: "a new spatial word game, not a clone.",
+    links: [{ t: "Site", u: "https://woords.io" }, { t: "App Store", u: "https://apps.apple.com/app/id6778837773" }, { t: "Features", u: "https://www.woords.io/features" }],
+  },
+  {
+    name: "TattleTown", kind: "Toy", tag: "live", tagText: "Live", img: "/projects/tattletown.png",
+    body: "Anonymous, place-anchored storytelling — drop and discover stories by geo and QR. On the App Store.",
+    why: "the map is the feed.",
+    links: [{ t: "Site", u: "https://tattletown.com" }, { t: "App Store", u: "https://apps.apple.com/us/app/tattletown/id6786742107" }, { t: "Features", u: "https://tattletown.com/features/" }],
+  },
+];
+const OSS = [
+  {
     name: "Sorb",
-    glyph: "checker",
-    chips: ["Figma", "→", "React"],
-    blurb:
-      "Sorb is the design-token bridge for the running app: it carries proposed tokens into your own React components as CSS custom properties - auto-bound, nothing to hand-author - live-previews the change, and checks it before merge.",
-    status: "private beta",
-    cta: { label: "explore →", href: "https://www.sorbcloud.com", external: true },
+    icon: "/brand/oss-sorb.svg",
+    meta: "design-token toolkit · MIT",
+    body: "The design-token bridge and its ecosystem — libraries, an MCP server, a Figma plugin, and a Storybook addon.",
+    subs: ["@sorb/core", "@sorb/seed", "@sorb/leaf", "@sorb/juice", "@sorb/tap · MCP", "@sorb/storybook", "sorb-canopy · Figma"],
+    npm: "https://www.npmjs.com/org/sorb",
+    gh: "https://github.com/metatoy",
+  },
+  {
+    name: "bootstrap-styled",
+    icon: "/brand/oss-bootstrap-styled.svg",
+    meta: "@metatoy/bootstrap-styled · MIT",
+    body: "A Bootstrap 5 rewrite in React + styled-components — the demo component set behind Sorb.",
+    npm: "https://www.npmjs.com/package/@metatoy/bootstrap-styled",
+    gh: "https://github.com/nhunsaker/bootstrap-styled",
+  },
+  {
+    name: "woords-lab",
+    icon: "/brand/oss-woords-lab.png",
+    meta: "woords-lab-app · MIT",
+    body: "An open-source SwiftUI showcase of the 14 visual effects built for woords — live on device.",
+    gh: "https://github.com/metatoy/woords-lab-app",
+  },
+  {
+    name: "Fidelity Ladder",
+    icon: "/brand/oss-fls.svg",
+    meta: "fidelity-ladder-system · MIT",
+    body: "An agentic loop that climbs design fidelity — spec → wireframe → interactive demo → flagged code.",
+    gh: "https://github.com/nhunsaker/fidelity-ladder-system",
   },
 ];
+const SHIPPED = [
+  { d: "2026", t: "TattleTown", r: " — launched on the App Store" },
+  { d: "2026", t: "woords", r: " — launched on the App Store" },
+  { d: "2026", t: "Sorb", r: " — public beta, open-source packages on npm" },
+];
 
-export default function StudioLanding() {
-  const org = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE.studio,
-    url: SITE.url,
-    sameAs: [SITE.githubUrl],
-  };
-
+export default function Home() {
   return (
-    <div className={`studio-page ${mono.variable} ${display.variable}`}>
-      <JsonLd data={org} />
-
-      {/* decorative glyph strip */}
-      <div className="studio-strip" aria-hidden="true">
-        {STRIP.map((k, i) => tile(k, i))}
-      </div>
-
-      <div className="studio-wrap">
-        <header className="studio-header">
-          <Link className="studio-logo" href="/">
-            <span className="studio-logo-mark" aria-hidden="true" />
-            metatoy.com
-          </Link>
-          <nav className="studio-nav">
-            <a href="#woords">[woords]</a>
-            <a href="#sorb">[sorb]</a>
-            <a href={`mailto:${STUDIO_EMAIL}`}>[contact]</a>
+    <main className={`mt-home ${archivo.variable} ${newsreader.variable} ${mono.variable}`}>
+      <header className="nav">
+        <div className="wrap">
+          <div className="logo" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <img src="/brand/metatoy-mark.svg" alt="Metatoy" width="30" height="30" style={{ borderRadius: "6px", display: "block" }} />
+            metatoy
+          </div>
+          <nav className="links">
+            <a href="#studio">Studio</a>
+            <a href="#projects">Projects</a>
+            <a href="#oss">Open Source</a>
+            <a href="#writing">Writing</a>
+            <a href="#contact">Contact</a>
           </nav>
-        </header>
+        </div>
+      </header>
 
-        <main>
-          <section className="studio-hero">
-            <p className="studio-eyebrow">
-              ~ one founder, two products <span className="studio-caret" />
-            </p>
-            <h1 className="studio-h1">
-              Build the tool.
-              <br />
-              <span className="studio-accent">Ship the toy.</span>
-            </h1>
-            <p className="studio-lead">
-              Metatoy is a workshop of one — a developer tool and a consumer
-              game built side by side, under the same roof. Two audiences, one
-              set of hands, zero filler.
-            </p>
-            <ul className="studio-meta">
-              <li>
-                <span className="studio-dot" /> status: shipping
-              </li>
-              <li>loc: remote</li>
-              <li>since: 2026</li>
-              <li>stack: figma · react · swift</li>
-            </ul>
-          </section>
+      <div className="wrap">
+        <section className="hero" style={{ borderTop: "none" }}>
+          <HeroFX />
+          <div className="lbl">Metatoy — a studio of one · design × engineering</div>
+          <h1>Build the tool, <em>ship the toy.</em></h1>
+          <p className="lead">I work the seam between design and engineering — production tools, playful apps, and open source other builders actually use.</p>
+          <div className="cta">
+            <a className="btn primary" href="#projects">See the work</a>
+            <a className="btn" href="#contact">Talk to me</a>
+          </div>
+          <div className="term-context">
+            <div className="k">Quick start · Sorb</div>
+            <p>Point an AI agent at your design tokens, or pull them into React — one line each.</p>
+          </div>
+          <div className="term">
+            <div className="bar"><i className="r"></i><i className="y"></i><i className="g"></i><span className="t">bash — sorb quickstart</span></div>
+            <pre>
+<span className="c-com"># let an AI agent read your design tokens — live, from the running bridge</span>{"\n"}
+<span className="p">$ </span><span className="c-fn">npx</span> -y @sorb/tap{"\n"}{"\n"}
+<span className="c-com"># or pull tokens into React with the SDK</span>{"\n"}
+<span className="c-key">import</span> {"{ SorbProvider }"} <span className="c-key">from</span> <span className="c-str">{"'@sorb/leaf'"}</span>
+            </pre>
+          </div>
+        </section>
 
-          <section className="studio-section">
-            <p className="studio-rule-label">{"// CURRENTLY SHIPPING"}</p>
-            <ul className="studio-products">
-              {PRODUCTS.map((p) => (
-                <li className="studio-product" id={p.id} key={p.id}>
-                  <span className="studio-num">{p.n}</span>
-                  <div className="studio-product-main">
-                    <div className="studio-product-name">
-                      {tile(p.glyph, p.id)}
-                      <h2>{p.name}</h2>
-                    </div>
-                    <div className="studio-chips">
-                      {p.chips.map((c, ci) =>
-                        c === "→" ? (
-                          <span className="studio-chip-sep" key={ci}>
-                            →
-                          </span>
-                        ) : (
-                          <span className="studio-chip" key={ci}>
-                            {c}
-                          </span>
-                        ),
-                      )}
-                    </div>
-                  </div>
-                  <p className="studio-product-blurb">{p.blurb}</p>
-                  <div className="studio-product-side">
-                    <span className="studio-status">
-                      <span className="studio-dot" /> {p.status}
-                    </span>
-                    {p.cta.external ? (
-                      <a
-                        className="studio-btn"
-                        href={p.cta.href}
-                        rel="noopener noreferrer"
-                      >
-                        {p.cta.label}
-                      </a>
-                    ) : (
-                      <a className="studio-btn" href={p.cta.href}>
-                        {p.cta.label}
-                      </a>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
+        <section id="studio">
+          <div className="sec-h"><h2>What the studio makes</h2><span className="lbl">Design × Engineering</span></div>
+          <div className="triad">
+            <div className="cell"><div className="n">01 · tools</div><h3>Tools</h3><p>Production software for people who build software. Sorb carries design tokens from Figma into a running React app — no rebuild.</p></div>
+            <div className="cell"><div className="n">02 · toys</div><h3>Toys</h3><p>Playful iOS apps with real craft — an infinite crossword, place-anchored storytelling, an effects lab.</p></div>
+            <div className="cell"><div className="n">03 · open source</div><h3>Open Source</h3><p>The libraries and an MCP server under it all — MIT, on npm, used in production by more than us.</p></div>
+          </div>
+        </section>
 
-          <section className="studio-subscribe">
-            <p className="studio-subscribe-copy">
-              <span className="studio-prompt">$</span> subscribe — one email when
-              there&rsquo;s something to see.
-            </p>
-            <a className="studio-btn studio-btn-solid" href={`mailto:${STUDIO_EMAIL}`}>
-              {STUDIO_EMAIL} ↵
-            </a>
-          </section>
-        </main>
+        <section id="projects">
+          <div className="sec-h"><h2>Featured work</h2><span className="lbl">Selected · 2026</span></div>
+          <div className="cards">
+            {PROJECTS.map((p) => (
+              <div className="card" key={p.name}>
+                {p.img ? <div className="card-media"><img src={p.img} alt={`${p.name} preview`} loading="lazy" /></div> : null}
+                <div className={`kind ${p.kind.toLowerCase()}`}>{p.kind}</div>
+                <div className="top"><h3>{p.name}</h3><span className={`tag ${p.tag}`}>{p.tagText}</span></div>
+                <p>{p.body}</p>
+                <div className="why">Why it matters: <b>{p.why}</b></div>
+                {p.links ? <div className="card-links">{p.links.map((l) => (<a key={l.t} href={l.u}>{l.t} ↗</a>))}</div> : null}
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <footer className="studio-footer">
-          <p>made by one human, two cups of coffee at a time.</p>
-          <p>
-            <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a> · © 2026 Metatoy
-            LLC
-          </p>
-        </footer>
+        <section id="oss">
+          <div className="sec-h"><h2>Open Source</h2><span className="lbl">MIT · npm &amp; GitHub</span></div>
+          <div className="oss-list">
+            {OSS.map((o) => (
+              <div className="oss-item" key={o.name}>
+                <div className="oss-head"><span className="oss-title">{o.icon ? <img className="oss-icon" src={o.icon} alt="" width="28" height="28" /> : null}<h3>{o.name}</h3></span><span className="oss-meta">{o.meta}</span></div>
+                <p>{o.body}</p>
+                {o.subs ? <div className="oss-sub">{o.subs.map((s) => (<span className="chip" key={s}>{s}</span>))}</div> : null}
+                <div className="oss-links">
+                  {o.npm ? <a href={o.npm}>npm ↗</a> : null}
+                  {o.gh ? <a href={o.gh}>GitHub ↗</a> : null}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="install"><span className="p">$</span> npx -y @sorb/tap</div>
+        </section>
+
+        <section id="writing">
+          <div className="sec-h"><h2>Recently shipped</h2><span className="lbl">Changelog</span></div>
+          <div className="ship">
+            {SHIPPED.map((s, i) => (
+              <div className="r" key={i}><time>{s.d}</time><span><b>{s.t}</b>{s.r}</span></div>
+            ))}
+          </div>
+        </section>
       </div>
-    </div>
+
+      <footer className="foot" id="contact">
+        <div className="wrap">
+          <div className="lbl" style={{ marginBottom: "20px" }}>Contact</div>
+          <h3>Stuck between the design and the build?</h3>
+          <p className="foot-lead">Send a note — it lands in my inbox, not a form graveyard.</p>
+          <ContactForm />
+          <div className="row">
+            <span>
+              <img src="/brand/spoon-cherry.svg" alt="" width="44" height="44" style={{ borderRadius: "6px", verticalAlign: "middle", marginRight: "9px" }} />
+              metatoy — a studio of one, Minneapolis
+            </span>
+            <span><a href="https://github.com/metatoy">GitHub</a> · <a href="https://www.npmjs.com/org/sorb">npm</a></span>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }

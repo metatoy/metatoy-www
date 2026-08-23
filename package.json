@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "tokens": "node scripts/build-tokens.mjs",
     "check:no-ts": "node scripts/check-no-ts.mjs",
     "prebuild": "node scripts/check-no-ts.mjs",
     "build": "next build",
@@ -15,6 +16,7 @@
   },
   "dependencies": {
     "next": "16.2.7",
+    "nodemailer": "^6.10.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
