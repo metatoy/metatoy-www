@@ -20,11 +20,13 @@ export const metadata = {
     title: "Metatoy: Build the tool, Ship the toy",
     description: SITE.description,
     url: SITE.url,
+    images: [{ url: "/og/metatoy-og.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Metatoy: Build the tool, Ship the toy",
     description: SITE.description,
+    images: ["/og/metatoy-og.png"],
   },
   icons: { icon: "/icon.svg", shortcut: "/icon.svg" },
 };
