@@ -3,6 +3,7 @@ import { Archivo, Newsreader, IBM_Plex_Mono } from "next/font/google";
 import { pageMetadata } from "@/lib/site";
 import ContactForm from "@/components/ContactForm";
 import HeroFX from "@/components/HeroFX";
+import HeaderNav from "@/components/HeaderNav";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["600", "800", "900"], variable: "--font-archivo", display: "swap" });
 const newsreader = Newsreader({ subsets: ["latin"], weight: ["400", "500"], style: ["normal", "italic"], variable: "--font-newsreader", display: "swap" });
@@ -12,7 +13,7 @@ const STUDIO_TITLE = "Metatoy: Build the tool, Ship the toy";
 const base = pageMetadata({
   title: null,
   description:
-    "Metatoy is a studio of one working the seam between design and engineering — production tools (Sorb), playful apps (woords, TattleTown), and open source other builders use.",
+    "Metatoy is a studio of one working the seam between design and engineering — production tools (Sorb), playful apps (woords, TattleTown), and open source built in the open.",
   path: "/",
 });
 export const metadata = {
@@ -90,13 +91,7 @@ export default function Home() {
             <img src="/brand/metatoy-mark.svg" alt="Metatoy" width="30" height="30" style={{ borderRadius: "6px", display: "block" }} />
             metatoy
           </div>
-          <nav className="links">
-            <a href="#studio">Studio</a>
-            <a href="#projects">Projects</a>
-            <a href="#oss">Open Source</a>
-            <a href="#writing">Writing</a>
-            <a href="#contact">Contact</a>
-          </nav>
+          <HeaderNav />
         </div>
       </header>
 
@@ -105,7 +100,7 @@ export default function Home() {
           <HeroFX />
           <div className="lbl">Metatoy — a studio of one · design × engineering</div>
           <h1>Build the tool, <em>ship the toy.</em></h1>
-          <p className="lead">I work the seam between design and engineering — production tools, playful apps, and open source other builders actually use.</p>
+          <p className="lead">I work the seam between design and engineering — production tools, playful apps, and open source I build in the open.</p>
           <div className="cta">
             <a className="btn primary" href="#projects">See the work</a>
             <a className="btn" href="#contact">Talk to me</a>
@@ -130,7 +125,7 @@ export default function Home() {
           <div className="triad">
             <div className="cell"><div className="n">01 · tools</div><h3>Tools</h3><p>Production software for people who build software. Sorb carries design tokens from Figma into a running React app — no rebuild.</p></div>
             <div className="cell"><div className="n">02 · toys</div><h3>Toys</h3><p>Playful iOS apps with real craft — an infinite crossword, place-anchored storytelling, an effects lab.</p></div>
-            <div className="cell"><div className="n">03 · open source</div><h3>Open Source</h3><p>The libraries and an MCP server under it all — MIT, on npm, used in production by more than us.</p></div>
+            <div className="cell"><div className="n">03 · open source</div><h3>Open Source</h3><p>The libraries and an MCP server under it all — MIT, on npm, free for anyone to build on.</p></div>
           </div>
         </section>
 
