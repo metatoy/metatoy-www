@@ -82,9 +82,54 @@ const SHIPPED = [
   { d: "2026", t: "Sorb", r: " — public beta, open-source packages on npm" },
 ];
 
+// Structured data (Organization + WebSite) so search engines can attach the
+// studio's identity, logo, and profiles to the domain — dropped in the refresh.
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://metatoy.com/#organization",
+      name: "Metatoy",
+      alternateName: "Metatoy LLC",
+      url: "https://metatoy.com",
+      logo: "https://metatoy.com/brand/metatoy-mark.svg",
+      email: "hello@metatoy.com",
+      description:
+        "Metatoy is a studio of one working the seam between design and engineering — production tools (Sorb), playful apps (woords, TattleTown), and open source built in the open.",
+      foundingDate: "2026",
+      foundingLocation: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Minneapolis",
+          addressRegion: "MN",
+          addressCountry: "US",
+        },
+      },
+      sameAs: [
+        "https://github.com/metatoy",
+        "https://www.npmjs.com/org/sorb",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://metatoy.com/#website",
+      url: "https://metatoy.com",
+      name: "Metatoy",
+      inLanguage: "en-US",
+      publisher: { "@id": "https://metatoy.com/#organization" },
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <main className={`mt-home ${archivo.variable} ${newsreader.variable} ${mono.variable}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
       <header className="nav">
         <div className="wrap">
           <div className="logo" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
