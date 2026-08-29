@@ -211,7 +211,17 @@ export default function Home() {
         </section>
 
         <section id="writing">
-          <div className="sec-h"><h2>Recently shipped</h2><span className="lbl">Changelog</span></div>
+          <div className="sec-h"><h2>Writing</h2><span className="lbl">Notes + changelog</span></div>
+          <div className="ship" style={{ marginBottom: "34px" }}>
+            <div className="r">
+              <time>Aug 2026</time>
+              <span>
+                <b><a href="/writing/rebuilding-bootstrap-5-in-styled-components">Rebuilding Bootstrap 5 in styled-components</a></b>
+                {" — runtime theming, a typed <Box> API, and a pixel-parity harness"}
+              </span>
+            </div>
+          </div>
+          <div className="lbl" style={{ marginBottom: "14px" }}>Recently shipped</div>
           <div className="ship">
             {SHIPPED.map((s, i) => (
               <div className="r" key={i}><time>{s.d}</time><span><b>{s.t}</b>{s.r}</span></div>

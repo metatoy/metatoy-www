@@ -1,0 +1,63 @@
+/* Writing pages (index + articles). Scoped under .mt-writing; consumes tokens.css.
+   Same type system as home: Archivo display, Newsreader body, Plex Mono labels/code. */
+
+.mt-writing{
+  --disp: var(--font-archivo), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --mono: var(--font-mono-studio), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  background:var(--color-paper);
+  color:var(--color-fg);
+  font-family:var(--serif);
+  font-size:var(--size-body);
+  line-height:1.65;
+  min-height:100vh;
+}
+.mt-writing a{color:var(--color-accent);text-decoration:none}
+.mt-writing a:hover{text-decoration:underline}
+.mt-writing .wrap{max-width:var(--layout-maxw);margin:0 auto;padding:0 var(--layout-gutter)}
+
+/* Top bar — same skeleton as home's .nav */
+.mt-writing .nav{border-bottom:1px solid var(--color-line);position:sticky;top:0;background:color-mix(in srgb, var(--color-paper) 85%, transparent);backdrop-filter:blur(8px);z-index:20}
+.mt-writing .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.mt-writing .logo{font-family:var(--disp);font-weight:900;font-size:20px;letter-spacing:-.02em;color:var(--color-ink);display:flex;align-items:center;gap:10px}
+.mt-writing .nav-back{font-family:var(--mono);font-size:13px;color:var(--color-dim)}
+.mt-writing .lbl{font-family:var(--mono);font-size:var(--size-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--color-faint)}
+
+/* Article column */
+.mt-writing .article{max-width:72ch;margin:0 auto;padding:64px var(--layout-gutter) 96px}
+.mt-writing .article-head{margin-bottom:44px}
+.mt-writing .article-head .lbl{margin-bottom:18px}
+.mt-writing h1{font-family:var(--disp);font-weight:900;font-size:clamp(30px,4.6vw,52px);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);color:var(--color-ink);margin:0 0 18px;text-wrap:balance}
+.mt-writing .dek{font-size:var(--size-lead);color:var(--color-dim);margin:0;max-width:56ch}
+.mt-writing .byline{display:flex;gap:10px;align-items:baseline;margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--color-faint)}
+.mt-writing .byline b{color:var(--color-dim);font-weight:500}
+
+.mt-writing .article h2{font-family:var(--disp);font-weight:800;font-size:26px;letter-spacing:-.01em;color:var(--color-ink);margin:52px 0 14px}
+.mt-writing .article p{margin:0 0 20px}
+.mt-writing .article ol,.mt-writing .article ul{margin:0 0 20px;padding-left:26px}
+.mt-writing .article li{margin-bottom:8px}
+.mt-writing .article b{color:var(--color-ink);font-weight:500}
+.mt-writing .article img{max-width:100%;height:auto;border:1px solid var(--color-line);border-radius:10px;display:block;margin:6px 0 20px}
+.mt-writing .article blockquote{margin:0 0 20px;padding:2px 0 2px 20px;border-left:3px solid var(--color-line-strong);color:var(--color-dim);font-style:italic}
+
+/* Code */
+.mt-writing code{font-family:var(--mono);font-size:.82em;background:var(--color-surface-2);border:1px solid var(--color-line);border-radius:5px;padding:1px 5px;color:var(--color-ink)}
+.mt-writing pre{background:var(--color-surface);border:1px solid var(--color-line);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:6px 0 22px;line-height:1.55}
+.mt-writing pre code{background:none;border:none;padding:0;font-size:14px;color:var(--color-fg)}
+
+/* End-of-article links */
+.mt-writing .article-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--color-line)}
+.mt-writing .article-foot .row{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:14px}
+
+/* Index list */
+.mt-writing .index{max-width:72ch;margin:0 auto;padding:64px var(--layout-gutter) 96px}
+.mt-writing .index h1{margin-bottom:34px}
+.mt-writing .entry{padding:24px 0;border-top:1px solid var(--color-line)}
+.mt-writing .entry time{font-family:var(--mono);font-size:13px;color:var(--color-faint)}
+.mt-writing .entry h2{font-family:var(--disp);font-weight:800;font-size:24px;margin:8px 0 10px}
+.mt-writing .entry h2 a{color:var(--color-ink)}
+.mt-writing .entry p{margin:0;color:var(--color-dim)}
+
+@media (max-width:640px){
+  .mt-writing .article,.mt-writing .index{padding-top:44px;padding-bottom:64px}
+}
