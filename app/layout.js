@@ -49,6 +49,8 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${GA_ID}');`}
         </Script>
+        {/* Umami (stats.n8plusus.com) -- self-hosted, cookieless; data-domains keeps local dev and previews out. */}
+        <Script src="https://stats.n8plusus.com/script.js" data-website-id="d63c53e4-2545-48b5-a670-5fd1ec53659c" data-domains="metatoy.com,www.metatoy.com" strategy="afterInteractive" />
       </body>
     </html>
   );
