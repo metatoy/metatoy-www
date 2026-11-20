@@ -52,7 +52,7 @@ gtag('config', '${GA_ID}');`}
         {/* Umami (stats.n8plusus.com) -- self-hosted, cookieless; data-domains keeps local dev and previews out.
             umami-guard.js (the before-send hook, same file as n8plusus.com) drops automated and impossible
             browsers and holds each pageview until the visitor interacts. It loads first so the hook exists. */}
-        <Script src="/umami-guard.js?v=20261119" strategy="beforeInteractive" />
+        <Script src="/umami-guard.js?v=20261120" strategy="beforeInteractive" />
         <Script src="https://stats.n8plusus.com/script.js" data-website-id="d63c53e4-2545-48b5-a670-5fd1ec53659c" data-domains="metatoy.com,www.metatoy.com" data-before-send="umamiBeforeSend" strategy="afterInteractive" />
       </body>
     </html>
