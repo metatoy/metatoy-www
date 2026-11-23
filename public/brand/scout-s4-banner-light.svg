@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" width="1280" height="320" role="img" aria-label="Scout. See how your design system is used across every repo.">
+<rect x="0.5" y="0.5" width="1279" height="319" rx="24" fill="#ffffff" stroke="#d0d7de"/>
+<svg x="64" y="64" width="192" height="192" viewBox="0 0 512 512">
+
+<defs><clipPath id="i-tile"><rect width="512" height="512" rx="116"/></clipPath><filter id="i-shadow" x="110" y="110" width="292" height="310" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dy="6"/><feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<g clip-path="url(#i-tile)">
+<rect width="256" height="256" fill="#5f2378"/>
+<rect x="256" width="256" height="256" fill="#e31e24"/>
+<rect x="256" y="256" width="256" height="256" fill="#0b72ba"/>
+<rect y="256" width="256" height="256" fill="#ee7a22"/>
+<circle cx="124" cy="124" r="62" fill="#ffdd2d"/>
+<rect x="336" y="64" width="112" height="112" rx="24" fill="#fdab25"/>
+<rect x="322" y="362" width="132" height="56" rx="28" fill="#93bf2b"/>
+<path d="M124 326 L186 440 L62 440 Z" fill="#5f2378" stroke="#5f2378" stroke-width="14" stroke-linejoin="round"/>
+</g>
+<circle cx="256" cy="256" r="112" fill="#ffdd2d" filter="url(#i-shadow)"/>
+<path transform="translate(256 256) scale(1.32)" d="M-51 50H4.3C16.1 50 20.8 48.9 28.3 44.4L-40.7 2.9H-51ZM34.5 39.7C36.4 37.6 36.8 37.2 38.3 35.4L-47.8 -16.4C-47.5 -13.6 -47.1 -11.7 -46.3 -8.7ZM42 29.2C42.6 27.3 42.8 26.7 43.7 23.7L-45.6 -30.1C-46.5 -27.3 -46.7 -26.9 -47.3 -24.3ZM44.1 15.5C44.1 13 43.9 12.3 43.3 8.5L-38.3 -40.6C-39.8 -39.1 -40.3 -38.7 -42.2 -36.3ZM51 -2.9V-50H-9.9C-20.8 -50 -25.3 -48.9 -32.1 -45.3L38.3 -2.9Z" fill="#5f2378"/>
+</svg>
+<path transform="translate(328 92) scale(0.88)" d="M0 94.6H50.5C62.4 94.6 68.1 92.8 73.8 87L9.5 49.5C10.7 52.5 12 54.4 15.8 58.2H0ZM77.8 83.9C78.8 82.7 79.1 82.6 79.9 81.1L5.5 37.6C5.8 40 5.9 40.4 6.6 42.4ZM82.1 76.8C82.9 75.5 83 75.4 83.7 73.8L5.9 28.2C5.4 30 5.4 30.3 5.4 32.1ZM84.7 68.9C85 67.6 85.1 66.9 85.1 66.1V64.9L8.8 20.5C7.9 22 7.8 22.1 7.2 23.7ZM85 59.4C84.6 57.3 84.5 56.9 83.7 54.6L13.9 13.9C12.7 15.1 12.6 15.4 11.5 16.6ZM91 5.4H38.2C28.1 5.4 22.1 7 17.7 10.7L79.9 46.9C78.8 45.2 75.2 41.9 72.8 40.4H91ZM187.6 5.4H147.5C131.5 5.4 124 7.1 114.7 13.1C102.4 21.2 94.5 35.7 94.5 50.3C94.5 69.1 106.6 85.9 124.2 92.1C130.3 94.2 134.4 94.6 147.3 94.6H187.6L142.8 68.9V63.9L187.6 89.6V85.3L142.8 59.6V54.5L187.6 80.2V75.9L142.8 50.2V45.1L187.6 70.8V66.5L142.8 40.8V35.7L187.6 61.4V57.2L161 42H187.6ZM244.3 68.1 195.7 40C194.9 44.3 194.6 46.9 194.6 50.1C194.6 77.1 217.8 100 245.1 100C272.8 100 294.8 77.8 294.8 49.8C294.8 22.1 272.8 0 245.1 0C234.7 0 226.1 2.8 216.2 9.4L244.3 25.6V30.7L212.6 12.3C211.2 13.4 211 13.5 209.6 14.9L244.3 34.9V40L206.7 18.3C205.8 19.5 205.5 19.8 204.6 21.3L244.3 44.3V49.4L202.1 25C201.2 26.4 201.1 26.6 200.3 28.2L244.3 53.7V58.8L198.3 32.1C197.6 33.7 197.5 34 196.9 35.6L244.3 63.1ZM301.1 0.8V5.1L392.2 56.6V5.4H348.9V27.8ZM301.1 10.2V14.5L390.8 65.2C391.3 63.6 391.4 63.3 391.8 61.6ZM300.9 19.5V23.8L387.6 72.8C388.4 71.4 388.5 71.1 389.2 69.5ZM301.1 28.9V33.2L383.3 79.7C384.2 78.6 384.5 78.3 385.4 76.7ZM301.1 38.3V42.6L377.5 85.8C378.8 84.7 379 84.6 380.3 83.1ZM300.9 47.7V51C300.9 63.9 305.2 74.8 313.9 83.7C322.4 92.4 333.9 97.3 345.6 97.3C355.3 97.3 365.7 94.1 373.4 88.6ZM397.6 5.4V9H491.3V5.4ZM397.6 13.4V17H491.3V13.4ZM397.6 21.4V25H491.3V21.4ZM397.6 29.5V33.1H491.3V29.5ZM397.6 37.5V41.1H421.7V94.6H466.3V41.1H491.3V37.5Z" fill="#18191c"/>
+<text x="328" y="228" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" fill="#57606a">See how your design system is used across every repo.</text>
+<rect x="328" y="250" width="20" height="20" rx="5" fill="#5f2378"/><rect x="358" y="250" width="20" height="20" rx="5" fill="#e31e24"/><rect x="388" y="250" width="20" height="20" rx="5" fill="#ee7a22"/><rect x="418" y="250" width="20" height="20" rx="5" fill="#ffdd2d"/><rect x="448" y="250" width="20" height="20" rx="5" fill="#93bf2b"/><rect x="478" y="250" width="20" height="20" rx="5" fill="#0b72ba"/>
+</svg>

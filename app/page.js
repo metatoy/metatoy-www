@@ -45,28 +45,22 @@ const PROJECTS = [
 ];
 const OSS = [
   {
-    name: "Sorb",
-    icon: "/brand/oss-sorb.svg",
-    meta: "design-token toolkit · MIT",
-    body: "The design-token bridge and its ecosystem — libraries, an MCP server, a Figma plugin, and a Storybook addon.",
-    subs: ["@sorb/core", "@sorb/seed", "@sorb/leaf", "@sorb/juice", "@sorb/tap · MCP", "@sorb/storybook", "sorb-canopy · Figma"],
-    npm: "https://www.npmjs.com/org/sorb",
-    gh: "https://github.com/metatoy",
+    name: "validonce",
+    icon: "/brand/oss-validonce-light.svg",
+    meta: "NuGet · npm · PyPI · Apache-2.0",
+    body: "Write cross-field validation rules once on the server, in FluentValidation or Pydantic, and enforce the same rules in React and Angular forms.",
+    subs: ["Validonce.AspNetCore", "validonce · npm", "validonce · PyPI", "Validonce.Cli"],
+    page: "/oss/validonce",
+    gh: "https://github.com/metatoy/validonce",
   },
   {
-    name: "bootstrap-styled",
-    icon: "/brand/oss-bootstrap-styled.svg",
-    meta: "@metatoy/bootstrap-styled · MIT",
-    body: "A Bootstrap 5 rewrite in React + styled-components — the demo component set behind Sorb.",
-    npm: "https://www.npmjs.com/package/@metatoy/bootstrap-styled",
-    gh: "https://github.com/nhunsaker/bootstrap-styled",
-  },
-  {
-    name: "woords-lab",
-    icon: "/brand/oss-woords-lab.png",
-    meta: "woords-lab-app · MIT",
-    body: "An open-source SwiftUI showcase of the 14 visual effects built for woords — live on device.",
-    gh: "https://github.com/metatoy/woords-lab-app",
+    name: "Scout",
+    icon: "/brand/oss-scout-s4-small.svg",
+    meta: "contributor · scoutui/scout · MIT",
+    body: "Scout shows how a design system is used across every repo: which components, where, on which version. I added Angular support, 15 pull requests merged.",
+    subs: ["Angular templates", "installed libraries", "selector matching", "unused props"],
+    page: "/oss/scout",
+    gh: "https://github.com/scoutui/scout/pulls?q=is%3Apr+author%3Anhunsaker",
   },
   {
     name: "Fidelity Ladder",
@@ -74,6 +68,13 @@ const OSS = [
     meta: "fidelity-ladder-system · MIT",
     body: "An agentic loop that climbs design fidelity — spec → wireframe → interactive demo → flagged code.",
     gh: "https://github.com/nhunsaker/fidelity-ladder-system",
+  },
+  {
+    name: "woords-lab",
+    icon: "/brand/oss-woords-lab.png",
+    meta: "woords-lab-app · MIT",
+    body: "An open-source SwiftUI showcase of the 14 visual effects built for woords — live on device.",
+    gh: "https://github.com/metatoy/woords-lab-app",
   },
 ];
 const SHIPPED = [
@@ -170,7 +171,7 @@ export default function Home() {
           <div className="triad">
             <div className="cell"><div className="n">01 · tools</div><h3>Tools</h3><p>Production software for people who build software. Sorb carries design tokens from Figma into a running React app — no rebuild.</p></div>
             <div className="cell"><div className="n">02 · toys</div><h3>Toys</h3><p>Playful iOS apps with real craft — an infinite crossword, place-anchored storytelling, an effects lab.</p></div>
-            <div className="cell"><div className="n">03 · open source</div><h3>Open Source</h3><p>The libraries and an MCP server under it all — MIT, on npm, free for anyone to build on.</p></div>
+            <div className="cell"><div className="n">03 · open source</div><h3>Open Source</h3><p>Libraries and tools built in the open, on npm, NuGet and PyPI, plus work merged upstream in other projects. Free for anyone to build on.</p></div>
           </div>
         </section>
 
@@ -191,21 +192,22 @@ export default function Home() {
         </section>
 
         <section id="oss">
-          <div className="sec-h"><h2>Open Source</h2><span className="lbl">MIT · npm &amp; GitHub</span></div>
+          <div className="sec-h"><h2>Open Source</h2><span className="lbl">npm · NuGet · PyPI · GitHub</span></div>
           <div className="oss-list">
             {OSS.map((o) => (
               <div className="oss-item" key={o.name}>
-                <div className="oss-head"><span className="oss-title">{o.icon ? <img className="oss-icon" src={o.icon} alt="" width="28" height="28" /> : null}<h3>{o.name}</h3></span><span className="oss-meta">{o.meta}</span></div>
+                <div className="oss-head"><span className="oss-title">{o.icon ? <img className="oss-icon" src={o.icon} alt="" width="28" height="28" /> : null}<h3>{o.page ? <a href={o.page} className="oss-name">{o.name}</a> : o.name}</h3></span><span className="oss-meta">{o.meta}</span></div>
                 <p>{o.body}</p>
                 {o.subs ? <div className="oss-sub">{o.subs.map((s) => (<span className="chip" key={s}>{s}</span>))}</div> : null}
                 <div className="oss-links">
+                  {o.page ? <a href={o.page}>Project page →</a> : null}
                   {o.npm ? <a href={o.npm}>npm ↗</a> : null}
-                  {o.gh ? <a href={o.gh}>GitHub ↗</a> : null}
+                  {o.gh ? <a href={o.gh}>{o.page && o.name === "Scout" ? "Pull requests ↗" : "GitHub ↗"}</a> : null}
                 </div>
               </div>
             ))}
           </div>
-          <div className="install"><span className="p">$</span> npx -y @sorb/tap</div>
+          <div className="install"><span className="p">$</span> dotnet add package Validonce.AspNetCore</div>
         </section>
 
         <section id="writing">
