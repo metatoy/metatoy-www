@@ -1,11 +1,8 @@
 import "../writing.css";
 import Link from "next/link";
-import { Archivo, Newsreader, IBM_Plex_Mono } from "next/font/google";
+import { archivo, newsreader, mono } from "@/lib/fonts";
 import { pageMetadata, SITE } from "@/lib/site";
 
-const archivo = Archivo({ subsets: ["latin"], weight: ["600", "800", "900"], variable: "--font-archivo", display: "swap" });
-const newsreader = Newsreader({ subsets: ["latin"], weight: ["400", "500"], style: ["normal", "italic"], variable: "--font-newsreader", display: "swap" });
-const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono-studio", display: "swap" });
 
 const PATH = "/writing/rebuilding-bootstrap-5-in-styled-components";
 const TITLE = "Rebuilding Bootstrap 5 in styled-components: runtime theming and a pixel-parity harness";

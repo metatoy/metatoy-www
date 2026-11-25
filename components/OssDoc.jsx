@@ -1,10 +1,7 @@
 import "@/app/home.css";
 import "@/app/oss/oss.css";
-import { Archivo, Newsreader, IBM_Plex_Mono } from "next/font/google";
+import { archivo, newsreader, mono } from "@/lib/fonts";
 
-const archivo = Archivo({ subsets: ["latin"], weight: ["600", "800", "900"], variable: "--font-archivo", display: "swap" });
-const newsreader = Newsreader({ subsets: ["latin"], weight: ["400", "500"], style: ["normal", "italic"], variable: "--font-newsreader", display: "swap" });
-const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono-studio", display: "swap" });
 
 // Frame for the open-source project pages (/oss/*): the studio header, a back
 // link to the Open Source section, the page body, and a short footer.
