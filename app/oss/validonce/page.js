@@ -87,12 +87,12 @@ export default function ValidoncePage() {
 
       <section>
         <h2>Migrate with an agent</h2>
-        <p>Already have cross-field checks in FluentValidation, Pydantic, Zod, yup or Angular? A coding agent can move them to validonce and prove that nothing changed. The kit is an <b>MCP server</b> (<a href="https://www.npmjs.com/package/validonce-mcp"><code>validonce-mcp</code></a>, for any MCP client) and a <b>Claude Code plugin</b> that bundles it with the <code>validonce-migrate</code> skill.</p>
+        <p>Already have cross-field checks in FluentValidation, Pydantic, Zod, yup or Angular? A coding agent can move them to validonce and check that nothing changed on generated inputs. The kit is an <b>MCP server</b> (<a href="https://www.npmjs.com/package/validonce-mcp"><code>validonce-mcp</code></a>, for any MCP client) and a <b>Claude Code plugin</b> that bundles it with the <code>validonce-migrate</code> skill.</p>
         <CodeBlock lang="shell" code={`/plugin marketplace add metatoy/validonce   # Claude Code
 /plugin install validonce@validonce
 
 claude mcp add --transport stdio validonce -- npx -y validonce-mcp   # the server alone`} />
-        <p>The agent finds each check, rewrites it as a validonce rule, and runs a <b>differential test</b>: the old validator and validonce must accept and reject exactly the same inputs across thousands of generated edge cases. Every run is graded by code, not by a model. In 49 graded runs, including a hold-out of three public apps, no migration changed what the validator accepts or rejects.</p>
+        <p>The agent finds each check, rewrites it as a validonce rule, and runs a <b>differential test</b>: the old validator and validonce must accept and reject exactly the same inputs across thousands of generated edge cases. Every run is graded by code, not by a model. In 49 graded runs, including three public apps, every run that passed agreed with the original validator on all generated inputs. Those use well-formed values; formats your code doesn&apos;t check at runtime are outside the proof.</p>
         <p className="note">Tools, results and the support policy: <a href={`${GH}/blob/main/docs/agentic-migration.md`}>docs/agentic-migration.md</a>.</p>
       </section>
 
