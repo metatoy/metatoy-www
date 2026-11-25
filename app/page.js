@@ -44,10 +44,11 @@ const OSS = [
   {
     name: "validonce",
     icon: "/brand/oss-validonce-light.svg",
-    meta: "NuGet · npm · PyPI · Apache-2.0",
-    body: "Write cross-field validation rules once on the server, in FluentValidation or Pydantic, and enforce the same rules in React and Angular forms.",
-    subs: ["Validonce.AspNetCore", "validonce · npm", "validonce · PyPI", "Validonce.Cli"],
+    meta: "npm · PyPI · NuGet · Go · Maven · Apache-2.0",
+    body: "Write cross-field validation rules once on the server (.NET, Python, Node, Go, Spring or Kubernetes CRDs) and enforce the same rules in React, Angular, Vue and plain HTML forms. With an MCP server and Claude Code plugin to migrate existing code.",
+    subs: ["live playground", "6 backends · 4 frontends", "MCP server + Claude Code plugin", "kubb · Hey API · orval"],
     page: "/oss/validonce",
+    play: "https://playground.metatoy.com",
     gh: "https://github.com/metatoy/validonce",
   },
   {
@@ -198,6 +199,7 @@ export default function Home() {
                 {o.subs ? <div className="oss-sub">{o.subs.map((s) => (<span className="chip" key={s}>{s}</span>))}</div> : null}
                 <div className="oss-links">
                   {o.page ? <a href={o.page}>Project page →</a> : null}
+                  {o.play ? <a href={o.play}>Playground ↗</a> : null}
                   {o.npm ? <a href={o.npm}>npm ↗</a> : null}
                   {o.gh ? <a href={o.gh}>{o.page && o.name === "Scout" ? "Pull requests ↗" : "GitHub ↗"}</a> : null}
                 </div>
