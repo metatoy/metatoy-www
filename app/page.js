@@ -4,6 +4,8 @@ import { pageMetadata } from "@/lib/site";
 import ContactForm from "@/components/ContactForm";
 import HeroFX from "@/components/HeroFX";
 import HeaderNav from "@/components/HeaderNav";
+import Link from "next/link";
+import { POSTS } from "./writing/posts";
 
 
 const STUDIO_TITLE = "Metatoy: Build the tool, Ship the toy";
@@ -210,7 +212,16 @@ export default function Home() {
         </section>
 
         <section id="writing">
-          <div className="sec-h"><h2>Recently shipped</h2><span className="lbl">Changelog</span></div>
+          <div className="sec-h"><h2>Writing</h2><span className="lbl">Notes + changelog</span></div>
+          <div className="ship" style={{ marginBottom: "34px" }}>
+            {POSTS.map((p) => (
+              <div className="r" key={p.slug}>
+                <time>{p.short}</time>
+                <span><b><Link href={`/writing/${p.slug}`}>{p.title}</Link></b></span>
+              </div>
+            ))}
+          </div>
+          <div className="lbl" style={{ marginBottom: "14px" }}>Recently shipped</div>
           <div className="ship">
             {SHIPPED.map((s, i) => (
               <div className="r" key={i}><time>{s.d}</time><span><b>{s.t}</b>{s.r}</span></div>
