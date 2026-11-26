@@ -77,11 +77,6 @@ const OSS = [
     gh: "https://github.com/metatoy/woords-lab-app",
   },
 ];
-const SHIPPED = [
-  { d: "2026", t: "TattleTown", r: " — launched on the App Store" },
-  { d: "2026", t: "woords", r: " — launched on the App Store" },
-  { d: "2026", t: "Sorb", r: " — public beta, open-source packages on npm" },
-];
 
 // Structured data (Organization + WebSite) so search engines can attach the
 // studio's identity, logo, and profiles to the domain — dropped in the refresh.
@@ -212,19 +207,13 @@ export default function Home() {
         </section>
 
         <section id="writing">
-          <div className="sec-h"><h2>Writing</h2><span className="lbl">Notes + changelog</span></div>
-          <div className="ship" style={{ marginBottom: "34px" }}>
+          <div className="sec-h"><h2>Writing</h2><Link className="lbl" href="/writing">All writing →</Link></div>
+          <div className="ship">
             {POSTS.map((p) => (
               <div className="r" key={p.slug}>
                 <time>{p.short}</time>
                 <span><b><Link href={`/writing/${p.slug}`}>{p.title}</Link></b></span>
               </div>
-            ))}
-          </div>
-          <div className="lbl" style={{ marginBottom: "14px" }}>Recently shipped</div>
-          <div className="ship">
-            {SHIPPED.map((s, i) => (
-              <div className="r" key={i}><time>{s.d}</time><span><b>{s.t}</b>{s.r}</span></div>
             ))}
           </div>
         </section>
